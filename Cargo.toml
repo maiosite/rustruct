@@ -1,0 +1,6 @@
+[package]
+name = "rustruct"
+version = "0.1.0"
+authors = ["fuzhou.chen <fuzhouch@gmail.com>"]
+
+[dependencies]
