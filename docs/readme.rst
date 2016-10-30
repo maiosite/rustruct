@@ -13,3 +13,4 @@ documentation from three pages below:
 - http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
 - http://docutils.sourceforge.net/docs/user/rst/quickstart.html
 - http://docutils.sourceforge.net/docs/user/rst/quickref.html
+- http://docutils.sourceforge.net/docs/user/rst/cheatsheet.txt
