@@ -1,5 +1,3 @@
-// vim:expandtab shiftwidth=4 textwidth=72
-//
 // MIT License
 // 
 // Copyright (c) 2016 Fuzhou Chen
@@ -23,5 +21,3 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
-

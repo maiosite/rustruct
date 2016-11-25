@@ -1,5 +1,3 @@
-// vim:expandtab shiftwidth=4 textwidth=72
-//
 // MIT License
 // 
 // Copyright (c) 2016 Fuzhou Chen
