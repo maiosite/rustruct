@@ -22,4 +22,12 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-pub mod parser;
+pub struct ReStructuredText {
+}
+
+
+impl ReStructuredText {
+    pub fn new() -> ReStructuredText {
+        ReStructuredText { }
+    }
+}
