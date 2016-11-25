@@ -1,6 +1,7 @@
-pub mod core;
-pub mod input;
-pub mod output;
+mod doctree;
+mod rst;
+
+pub mod html;
 
 #[cfg(test)]
 mod tests {
