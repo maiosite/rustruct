@@ -26,10 +26,3 @@ mod rst;
 
 pub mod html;
 pub use rst::parser::ReStructuredText;
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-    }
-}

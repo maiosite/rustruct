@@ -22,12 +22,33 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+/// Main entry for ReStructuredText parser.
+///
+/// # Examples
+///
+/// ```
+/// use rustruct::ReStructuredText;
+///
+/// let rst = ReStructuredText::new();
+/// ```
 pub struct ReStructuredText {
 }
 
 
-impl ReStructuredText {
+impl ReStructuredText {    
+    /// Create a new parser.
     pub fn new() -> ReStructuredText {
         ReStructuredText { }
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    #[allow(unused_variables)]
+    fn create_parser() {
+        let rst = ReStructuredText::new();
     }
 }
