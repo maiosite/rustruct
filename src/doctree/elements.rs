@@ -22,4 +22,61 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-pub mod elements;
+pub struct SectionNode {
+    title: String,
+    level: i8
+}
+
+pub enum DocElement {
+    Document,
+    Section(SectionNode),
+    Transition,
+
+    Paragraph,
+    BulletList,
+    EnumeratedList,
+    DefinitionList,
+    FieldList,
+    OptionList,
+    LiteralBlock,
+    BlockQuote,
+    DoctestBlock,
+    GridTable,
+    SimpleTable,
+    FootNotes,
+    Citation,
+    HyperlinkTarget,
+    Directive,
+    SubsitutionDefinition,
+    Comment
+}
+
+pub trait Traversal {
+    fn get_first_child(&self) -> Option<DocElement>;
+    fn get_next_sibling(&self) -> Option<DocElement>;
+}
+
+impl Traversal for SectionNode {
+    fn get_first_child(&self) -> Option<DocElement> {
+        None
+    }
+
+    fn get_next_sibling(&self) -> Option<DocElement> {
+        None
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[allow(unused_variables)]
+    fn create_section() {
+        let sec = SectionNode {
+            title: "123".to_string(),
+            level: 1
+        };
+    }
+}

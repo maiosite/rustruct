@@ -25,4 +25,7 @@ mod doctree;
 mod rst;
 
 pub mod html;
+
 pub use rst::parser::ReStructuredText;
+pub use doctree::elements::DocElement;
+pub use doctree::elements::SectionNode;
