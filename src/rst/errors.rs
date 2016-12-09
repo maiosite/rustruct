@@ -22,6 +22,9 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-pub mod parser;
-pub mod tokens;
-pub mod errors;
+pub enum Error {
+
+    // Error code for Section title
+    SectionOverlineAndUnderlineUnmatched { line_no: i32 },
+    SectionUnderlineMissing { line_no: i32 },
+}

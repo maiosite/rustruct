@@ -27,6 +27,11 @@ pub struct SectionNode {
     level: i8,
 }
 
+/// Toplevel object to represent a documentation.
+pub struct Document {
+}
+
+/*
 pub enum DocElement {
     Document,
     Section(SectionNode),
@@ -50,22 +55,7 @@ pub enum DocElement {
     SubsitutionDefinition,
     Comment,
 }
-
-pub trait Traversal {
-    fn get_first_child(&self) -> Option<DocElement>;
-    fn get_next_sibling(&self) -> Option<DocElement>;
-}
-
-impl Traversal for SectionNode {
-    fn get_first_child(&self) -> Option<DocElement> {
-        None
-    }
-
-    fn get_next_sibling(&self) -> Option<DocElement> {
-        None
-    }
-}
-
+*/
 
 #[cfg(test)]
 mod tests {

@@ -22,16 +22,13 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use super::super::doctree::elements::Document;
+
 /// Main entry for ReStructuredText parser.
-///
-/// # Examples
-///
-/// ```
-/// use rustruct::ReStructuredText;
-///
-/// let rst = ReStructuredText::new();
-/// ```
 pub struct ReStructuredText {
+}
+
+pub struct Error {
 }
 
 
@@ -39,6 +36,10 @@ impl ReStructuredText {
     /// Create a new parser.
     pub fn new() -> ReStructuredText {
         ReStructuredText {}
+    }
+
+    fn read_string(content: &String) -> Result<Document, Error> {
+        Ok(Document {})
     }
 }
 
