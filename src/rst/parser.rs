@@ -22,8 +22,8 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use super::super::doctree::elements::Document;
 use super::error::Error;
+use super::super::doctree::elements::Document;
 
 /// Main interface to geneate doctree from ReStructuredText document.
 #[derive(Debug, Copy, Clone)]
