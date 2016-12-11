@@ -106,14 +106,13 @@ pub fn recognize(content: &Vec<&str>, line_no: usize) -> Line {
         .unwrap()
 }
 
-
-
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
     fn test_recognize_blankline() {
         let test_content: Vec<_> = "   \n".lines().collect();
-        assert_eq!(recognize(&test_content, 0), Line::BlankLine { line_no: 0 });
+        let expected_token = Line::BlankLine { line_no: 0 };
+        assert_eq!(recognize(&test_content, 0), expected_token);
     }
 }

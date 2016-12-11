@@ -27,7 +27,7 @@
 // parser will not abort when detecting an issue listed here.
 
 #[derive(PartialEq)]
-#[derive(Debug)]
+#[derive(Debug,Clone,Copy)]
 pub enum Error {
     SectionOverlineAndUnderlineUnmatched,
     SectionUnderlineMissing,

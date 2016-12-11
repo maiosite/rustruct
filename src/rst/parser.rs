@@ -36,7 +36,8 @@ impl ReStructuredText {
         ReStructuredText {}
     }
 
-    fn read_string(content: &String) -> Result<Document, Error> {
+    /// Read ReStructuredText documentation and return an doctree.
+    pub fn read_string(content: &String) -> Result<Document, Error> {
         Ok(Document {})
     }
 }
