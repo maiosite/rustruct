@@ -31,31 +31,30 @@ pub struct SectionNode {
 pub struct Document {
 }
 
-/*
-pub enum DocElement {
-    Document,
-    Section(SectionNode),
-    Transition,
-
-    Paragraph,
-    BulletList,
-    EnumeratedList,
-    DefinitionList,
-    FieldList,
-    OptionList,
-    LiteralBlock,
-    BlockQuote,
-    DoctestBlock,
-    GridTable,
-    SimpleTable,
-    FootNotes,
-    Citation,
-    HyperlinkTarget,
-    Directive,
-    SubsitutionDefinition,
-    Comment,
-}
-*/
+// pub enum DocElement {
+// Document,
+// Section(SectionNode),
+// Transition,
+//
+// Paragraph,
+// BulletList,
+// EnumeratedList,
+// DefinitionList,
+// FieldList,
+// OptionList,
+// LiteralBlock,
+// BlockQuote,
+// DoctestBlock,
+// GridTable,
+// SimpleTable,
+// FootNotes,
+// Citation,
+// HyperlinkTarget,
+// Directive,
+// SubsitutionDefinition,
+// Comment,
+// }
+//
 
 #[cfg(test)]
 mod tests {

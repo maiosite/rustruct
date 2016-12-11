@@ -23,5 +23,5 @@
 // SOFTWARE.
 
 pub mod parser;
-pub mod tokens;
-pub mod errors;
+pub mod error;
+pub mod line;

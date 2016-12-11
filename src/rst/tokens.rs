@@ -25,7 +25,7 @@
 // This file defines a line-based tokens used by parser to break an
 // ReStructuredText document to be a set of tokens.
 
-use super::errors::Error;
+use super::error::Error;
 
 pub const SECTION_VALID_ADORNMENT: &'static str = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 pub const SECTION_RECOMMENDED_ADORNMENT: &'static str = "=-`:.'\"~^_*+#";

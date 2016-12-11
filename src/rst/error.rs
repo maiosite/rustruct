@@ -22,9 +22,15 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-pub enum Error {
+// This file defines error codes that we may meet during parsing.
+// Note that ReStructuredText has actually no real "errors", which means
+// parser will not abort when detecting an issue listed here.
 
-    // Error code for Section title
-    SectionOverlineAndUnderlineUnmatched { line_no: i32 },
-    SectionUnderlineMissing { line_no: i32 },
+#[derive(PartialEq)]
+#[derive(Debug)]
+pub enum Error {
+    SectionOverlineAndUnderlineUnmatched,
+    SectionUnderlineMissing,
+    SectionAdornmentLineTooShort,
+    SectionAdornmentCharacterNotRecommended,
 }
