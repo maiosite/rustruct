@@ -21,10 +21,23 @@
 // ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
+
+#![deny(missing_docs,
+        missing_debug_implementations,
+        missing_copy_implementations,
+        trivial_casts,
+        trivial_numeric_casts,
+        unsafe_code,
+        unstable_features,
+        unused_import_braces,
+        unused_qualifications)]
+
+//! # RuStructuredText processing library
+//! Convert ReStructuredText documentation to HTML documentation.
+
 mod doctree;
 mod rst;
 
 pub mod html;
 
 pub use rst::parser::ReStructuredText;
-pub use doctree::elements::SectionNode;

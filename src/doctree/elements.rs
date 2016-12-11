@@ -22,50 +22,30 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-pub struct SectionNode {
-    title: String,
-    level: i8,
-}
-
 /// Toplevel object to represent a documentation.
 pub struct Document {
 }
 
-// pub enum DocElement {
-// Document,
-// Section(SectionNode),
-// Transition,
-//
-// Paragraph,
-// BulletList,
-// EnumeratedList,
-// DefinitionList,
-// FieldList,
-// OptionList,
-// LiteralBlock,
-// BlockQuote,
-// DoctestBlock,
-// GridTable,
-// SimpleTable,
-// FootNotes,
-// Citation,
-// HyperlinkTarget,
-// Directive,
-// SubsitutionDefinition,
-// Comment,
-// }
-//
+enum DocElement {
+    Document,
+    Section,
+    Transition,
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    #[allow(unused_variables)]
-    fn create_section() {
-        let sec = SectionNode {
-            title: "123".to_string(),
-            level: 1,
-        };
-    }
+    Paragraph,
+    BulletList,
+    EnumeratedList,
+    DefinitionList,
+    FieldList,
+    OptionList,
+    LiteralBlock,
+    BlockQuote,
+    DoctestBlock,
+    GridTable,
+    SimpleTable,
+    FootNotes,
+    Citation,
+    HyperlinkTarget,
+    Directive,
+    SubsitutionDefinition,
+    Comment,
 }

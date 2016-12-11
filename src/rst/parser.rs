@@ -23,14 +23,12 @@
 // SOFTWARE.
 
 use super::super::doctree::elements::Document;
+use super::error::Error;
 
-/// Main entry for ReStructuredText parser.
+/// Main interface to geneate doctree from ReStructuredText document.
+#[derive(Debug, Copy, Clone)]
 pub struct ReStructuredText {
 }
-
-pub struct Error {
-}
-
 
 impl ReStructuredText {
     /// Create a new parser.
