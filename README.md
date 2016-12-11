@@ -1,6 +1,4 @@
-Master branch: [![Build Status](https://travis-ci.org/maiosite/rustruct.svg?branch=master)](https://travis-ci.org/maiosite/rustruct)
-
-Fuzhou's dev branch: [![Build Status (dev branch)](https://travis-ci.org/maiosite/rustruct.svg?branch=fuzhouch)](https://travis-ci.org/maiosite/rustruct)
+[![Build Status (dev branch)](https://travis-ci.org/maiosite/rustruct.svg?branch=fuzhouch)](https://travis-ci.org/maiosite/rustruct) [![License](https://img.shields.io/crates/l/protobuf.svg)](https://github.com/maiosite/rustruct/blob/master/LICENSE).
 
 # What is Rustruct?
 
