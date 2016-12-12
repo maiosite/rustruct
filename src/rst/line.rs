@@ -26,6 +26,7 @@ use super::error::Error;
 
 static SECTION_RECOMMENDED_ADORNMENT: &'static str = "=-`:.'\"~^_*+#";
 static SECTION_ACCEPTABLE_ADORNMENT: &'static str = "!$%&(),/;<>?@[\\]{|}";
+static ITEMIZED_BULLET: &'static str = "*+-•‣⁃";
 
 #[derive(PartialEq)]
 #[derive(Debug)]
@@ -97,15 +98,30 @@ fn detect_adornment(line: &str) -> Option<Line> {
         .ok()
 }
 
+fn detect_itemized_bullet(line: &str) -> bool {
+    match line.len() > 2 {
+        false => false,
+        true => {
+            let mut chs = line.chars();
+            let first_ch = chs.next().unwrap();
+            let second_ch = chs.next().unwrap();
+            ITEMIZED_BULLET.chars().any(|ch| ch == first_ch) && second_ch.is_whitespace()
+        }
+    }
+}
+
+fn is_itemized(line: &str) -> bool {
+    detect_itemized_bullet(line)
+}
+
 fn detect_text(line: &str) -> Option<Line> {
-    let trimmed = line.trim_right();
+    let trimmed = line.trim_left();
     let indention_count = line.len() - trimmed.len();
     Some(Line::Text {
         indention_count: indention_count,
-        itemized_like: false, // TODO Will fix later
+        itemized_like: is_itemized(trimmed),
     })
 }
-
 
 pub fn recognize(content: &Vec<&str>, line_no: usize) -> Line {
     detect_blank_line(content[line_no])
@@ -154,4 +170,14 @@ Test
         }
     }
 
+    #[test]
+    fn test_itemized_line() {
+        let lines: Vec<_> = "    - itemized".lines().collect();
+        let intented_itemized = Line::Text {
+            indention_count: 4,
+            itemized_like: true,
+        };
+
+        assert_eq!(recognize(&lines, 0), intented_itemized);
+    }
 }
