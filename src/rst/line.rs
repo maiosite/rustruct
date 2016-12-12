@@ -30,17 +30,15 @@ static SECTION_ACCEPTABLE_ADORNMENT: &'static str = "!$%&(),/;<>?@[\\]{|}";
 #[derive(PartialEq)]
 #[derive(Debug)]
 pub enum Line {
-    BlankLine { line_no: usize },
+    BlankLine,
 
     Adornment {
-        line_no: usize,
         adornment_char: char,
         adornment_length: usize,
         err: Option<Error>,
     },
 
     Text {
-        line_no: usize,
         indention_count: usize,
         itemized_like: bool,
     },
@@ -48,50 +46,61 @@ pub enum Line {
     EndOfFile,
 }
 
-fn detect_blank_line(line: &str, line_no: usize) -> Option<Line> {
+fn detect_blank_line(line: &str) -> Option<Line> {
     if line.trim().len() == 0 {
-        Some(Line::BlankLine { line_no: line_no })
+        Some(Line::BlankLine)
     } else {
         None
     }
 }
 
-fn detect_adornment(line: &str, line_no: usize) -> Option<Line> {
-    let mut chs = line.chars();
+fn detect_recommended_adornment(line: &str, first_ch: char) -> Result<Line, char> {
+    if SECTION_RECOMMENDED_ADORNMENT.chars().any(|ch| ch == first_ch) {
+        Ok(Line::Adornment {
+            adornment_char: first_ch,
+            adornment_length: line.trim().len(),
+            err: None,
+        })
+    } else {
+        Err(first_ch)
+    }
+}
+
+fn detect_acceptable_adornment(line: &str, first_ch: char) -> Result<Line, char> {
+    if SECTION_ACCEPTABLE_ADORNMENT.chars().any(|ch| ch == first_ch) {
+        Ok(Line::Adornment {
+            adornment_char: first_ch,
+            adornment_length: line.trim().len(),
+            err: Some(Error::SectionAdornmentCharacterNotRecommended),
+        })
+    } else {
+        Err(first_ch)
+    }
+}
+
+fn detect_same_char_in_line(line: &str) -> Result<char, char> {
     // If we pass an empty line, it should panic here. This is exactly
     // what we expect: blank line detection should always happen before
-    // detecting anything else.
-    let first = chs.next().unwrap();
-    if chs.all(|ch| ch == first) {
-        if SECTION_RECOMMENDED_ADORNMENT.chars().any(|ch| ch == first) {
-            Some(Line::Adornment {
-                line_no: line_no,
-                adornment_char: first,
-                adornment_length: line.trim().len(),
-                err: None,
-            })
-        } else {
-            if SECTION_ACCEPTABLE_ADORNMENT.chars().any(|ch| ch == first) {
-                Some(Line::Adornment {
-                    line_no: line_no,
-                    adornment_char: first,
-                    adornment_length: line.trim().len(),
-                    err: Some(Error::SectionAdornmentCharacterNotRecommended),
-                })
-            } else {
-                None
-            }
-        }
-    } else {
-        None
+    // detecting anything else, it's ensured by recognize() function.
+    let mut chs = line.chars();
+    let first_ch = chs.next().unwrap();
+    match chs.all(|ch| ch == first_ch) {
+        true => Ok(first_ch),
+        false => Err(first_ch),
     }
 }
 
-fn detect_text(line: &str, line_no: usize) -> Option<Line> {
+fn detect_adornment(line: &str) -> Option<Line> {
+    detect_same_char_in_line(line)
+        .and_then(|first_ch| detect_recommended_adornment(line, first_ch))
+        .or_else(|first_ch| detect_acceptable_adornment(line, first_ch))
+        .ok()
+}
+
+fn detect_text(line: &str) -> Option<Line> {
     let trimmed = line.trim_right();
     let indention_count = line.len() - trimmed.len();
     Some(Line::Text {
-        line_no: line_no,
         indention_count: indention_count,
         itemized_like: false, // TODO Will fix later
     })
@@ -99,9 +108,9 @@ fn detect_text(line: &str, line_no: usize) -> Option<Line> {
 
 
 pub fn recognize(content: &Vec<&str>, line_no: usize) -> Line {
-    detect_blank_line(content[line_no], line_no)
-        .or_else(|| detect_adornment(content[line_no], line_no))
-        .or_else(|| detect_text(content[line_no], line_no))
+    detect_blank_line(content[line_no])
+        .or_else(|| detect_adornment(content[line_no]))
+        .or_else(|| detect_text(content[line_no]))
         .or(Some(Line::EndOfFile))
         .unwrap()
 }
@@ -112,7 +121,7 @@ mod tests {
     #[test]
     fn test_recognize_blankline() {
         let test_content: Vec<_> = "   \n".lines().collect();
-        let expected_token = Line::BlankLine { line_no: 0 };
+        let expected_token = Line::BlankLine;
         assert_eq!(recognize(&test_content, 0), expected_token);
     }
 
@@ -124,20 +133,17 @@ Test
 ========
         "#;
         let lines: Vec<_> = test_content.lines().collect();
-        let expected = [Line::BlankLine { line_no: 0 },
+        let expected = [Line::BlankLine,
                         Line::Adornment {
-                            line_no: 1,
                             adornment_char: '=',
                             adornment_length: 8,
                             err: None,
                         },
                         Line::Text {
-                            line_no: 2,
                             indention_count: 0,
                             itemized_like: false,
                         },
                         Line::Adornment {
-                            line_no: 3,
                             adornment_char: '=',
                             adornment_length: 8,
                             err: None,
