@@ -116,12 +116,6 @@ mod tests {
         assert_eq!(recognize(&test_content, 0), expected_token);
     }
 
-    struct LineParserTestData {
-        index: usize,
-        input: String,
-        expected_output: Line,
-    }
-
     #[test]
     fn test_recognize_continuous_text_lines() {
         let test_content = r#"
@@ -130,33 +124,28 @@ Test
 ========
         "#;
         let lines: Vec<_> = test_content.lines().collect();
+        let expected = [Line::BlankLine { line_no: 0 },
+                        Line::Adornment {
+                            line_no: 1,
+                            adornment_char: '=',
+                            adornment_length: 8,
+                            err: None,
+                        },
+                        Line::Text {
+                            line_no: 2,
+                            indention_count: 0,
+                            itemized_like: false,
+                        },
+                        Line::Adornment {
+                            line_no: 3,
+                            adornment_char: '=',
+                            adornment_length: 8,
+                            err: None,
+                        }];
 
-        let expected_line_0 = Line::BlankLine { line_no: 0 };
-
-        let expected_line_1 = Line::Adornment {
-            line_no: 1,
-            adornment_char: '=',
-            adornment_length: 8,
-            err: None,
-        };
-
-        let expected_line_2 = Line::Text {
-            line_no: 2,
-            indention_count: 0,
-            itemized_like: false,
-        };
-
-        let expected_line_3 = Line::Adornment {
-            line_no: 3,
-            adornment_char: '=',
-            adornment_length: 8,
-            err: None,
-        };
-
-        assert_eq!(recognize(&lines, 0), expected_line_0);
-        assert_eq!(recognize(&lines, 1), expected_line_1);
-        assert_eq!(recognize(&lines, 2), expected_line_2);
-        assert_eq!(recognize(&lines, 3), expected_line_3);
+        for i in 0..4 {
+            assert_eq!(recognize(&lines, i), expected[i]);
+        }
     }
 
 }
