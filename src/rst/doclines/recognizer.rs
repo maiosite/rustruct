@@ -10,9 +10,10 @@ use super::text::detect_text;
 
 /// Detect type of given line from given reStructuredText document.
 pub fn recognize(content: &Vec<&str>, line_no: usize) -> Line {
-    detect_blank_line(content[line_no])
-        .or_else(|| detect_adornment(content[line_no]))
-        .or_else(|| detect_text(content[line_no]))
+    let line_text = content[line_no];
+    detect_blank_line(line_text)
+        .or_else(|| detect_adornment(line_text))
+        .or_else(|| detect_text(line_text))
         .or(Some(Line::EndOfFile))
         .unwrap()
 }
