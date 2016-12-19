@@ -9,6 +9,7 @@ mod adornment;
 mod blankline;
 mod itemized;
 mod recognizer;
+mod preprocessing;
 
 pub use self::line::Line;
 pub use self::recognizer::recognize;
