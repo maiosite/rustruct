@@ -10,10 +10,10 @@
 
 use std::borrow::Borrow;
 use std::borrow::Cow;
-use std::ops::Deref;
 use std::collections::HashMap;
+use std::ops::Deref;
 
-static TABSTOP: &'static str= "        "; // 1 tab = 8 spaces
+static TABSTOP: &'static str = "        "; // 1 tab = 8 spaces
 
 fn replace_tabs_with_spaces<'a>(line: &'a str) -> Cow<'a, str> {
     if line.contains('\t') {

@@ -3,8 +3,8 @@
 
 //! Define detection functions for textlines.
 
-use super::line::Line;
 use super::itemized::is_itemized;
+use super::line::Line;
 
 /// Detect text line.
 pub fn detect_text(line: &str) -> Option<Line> {

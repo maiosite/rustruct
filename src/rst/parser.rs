@@ -1,8 +1,8 @@
 // Copyright (c) 2016 Fuzhou Chen
 // Licensed under MIT 2.0 license. See LICENSE file for details.
 
-use super::error::Error;
 use super::doclines::recognize;
+use super::error::Error;
 use super::super::doctree::elements::Document;
 
 /// Main interface to geneate doctree from ReStructuredText document.

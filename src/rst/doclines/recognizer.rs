@@ -3,9 +3,9 @@
 
 //! Define public interface of docline module.
 
-use super::line::Line;
 use super::adornment::detect_adornment;
 use super::blankline::detect_blank_line;
+use super::line::Line;
 use super::text::detect_text;
 
 /// Detect type of given line from given reStructuredText document.
