@@ -4,7 +4,7 @@ Rustruct Overview
 
 Hey man. Welcome to Rustruct world!
 
-Wait! I don't know you... So what's Rustruct?
+Q: Wait! I don't know you... So what's Rustruct?
 
 Rustruct is a library to parse documents written in ReStructuredText
 format. It also provide capability to convert the output to Html5
@@ -49,15 +49,14 @@ generate Html5 documentation from ReStructuredText document.
 Motivation
 =============
 
-OK I understand. But why do you want to reinvent the wheel, since you
+Q: OK I understand. But why do you want to reinvent the wheel, since you
 have mentioned Docutils_?
 
 We may think of Rustruct a just-for-fun project, like a lot of other
 projects we can find. For myself, it's more like a self-learning
 session, learning to write programs in Rust_. I expect it can be a
 really good tool for all writers using ReStructuredText, but let's talk
-about it when it's really usable first.
+about it when it's really usable.
 
 .. _Rust: http://www.rust-lang.org
 .. _Docutils: http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
-

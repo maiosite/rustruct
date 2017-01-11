@@ -2,5 +2,10 @@
 name = "rustruct"
 version = "0.1.0"
 authors = ["fuzhou.chen <fuzhouch@gmail.com>"]
+repository = "https://github.com/maiosite/rustruct"
+homepage = "https://github.com/maiosite/rustruct"
+license = "MIT"
+readme = "README.md"
+description = "ReStructuredText to HTML converter library."
 
 [dependencies]
